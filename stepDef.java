@@ -7,25 +7,29 @@ import cucumber.api.java.en.When;
 import page.GojekPage;
 
 public class StepDefs {
-    StepDef step = new StepDef();
-
+    
     @Given("^I open website gojek$")
-    public void I_open_website_gojek() throw Throwable {
-        step.successfullyOpenWebsiteGojek();
+    public void I_Open_Website_Gojek() throw Throwable {
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().deleteAllCookies();
+        driver.get("http://www.gojek.com");
     }
     
     @And("^I click layanan button$")
-    public void I_click_layanan_button() throw Throwable {
-        step.successfullyOpenWebsiteGojek();
+    public void I_Click_Layanan_Button() throw Throwable {
+        driver.findElement(By.className("buttonLayanan")).click();
     }
     
-    @When("^I click images <product_option>$")
-    public void When_I_click_images_<product_option>() throw Throwable {
-        step.successfullyOpenWebsiteGojek();
+    @When("^I click images (.*)$")
+    public void I_Click_Images_Product_Option(String productOption) () throw Throwable {
+        WebElement temp = driver.findElement(By.xpath("//img[@src='web/L001/images/GORIDE.jpg']"));
+        WebElement temp = driver.findElement(By.xpath("//img[@src='web/L002/images/GOCAR.jpg']"));
     }
     
-    @Then("^I should see 'Kenapa <product_option>'$")
-    public void I_should_see_'Kenapa <product_option>'() throw Throwable {
-        step.successfullyOpenWebsiteGojek();
+    @Then("^I should see kenapa (.*)'$")
+    public void I_Should_See_Kenapa(List<String> productOption) () throw Throwable {
+        WebElement temp = driver.findElement(By.xpath("//img[@src='web/L001/images/GORIDE.jpg']"));
+        WebElement temp = driver.findElement(By.xpath("//img[@src='web/L002/images/GOCAR.jpg']"));
     }
 }
